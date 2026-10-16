@@ -20,3 +20,21 @@ EuroSAT has 27,000 labelled images in 10 classes:
 - `Residential`: 3000 images
 - `River`: 2500 images
 - `SeaLake`: 3000 images
+
+## How to run
+1. Clone the repo
+    - ```git clone "https://github.com/MutindaMutio/Land-Use-Classification-Project.git"```
+2. Move into the project folder
+    - ```cd Land-Use-Classification-Project```
+3. Create the virtual environment 
+    - ```python -m venv .venv```
+4. Activate it (Windows)
+    - ```.venv\Scripts\activate```
+5. Install packages in requirements.txt
+    - ```pip install -r requirements.txt```
+6. Run download_data.py
+    - ```python download_data.py```
+    - Takes ~10 mins to install data
+7. Run explore_data.py
+    - ```python explore_data.py```
+    - Opens a window that needs to be closed to finish the script
