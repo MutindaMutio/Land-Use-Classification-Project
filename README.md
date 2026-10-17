@@ -38,3 +38,6 @@ EuroSAT has 27,000 labelled images in 10 classes:
 7. Run explore_data.py
     - ```python explore_data.py```
     - Opens a window that needs to be closed to finish the script
+
+## Citation
+Helber, P., Bischke, B., Dengel, A., & Borth, D. (2018). EuroSAT: A Novel Dataset and Deep Learning Benchmark for Land Use and Land Cover Classification. Zenodo. https://doi.org/10.5281/zenodo.7711810
