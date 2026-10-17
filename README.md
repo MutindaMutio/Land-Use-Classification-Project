@@ -34,7 +34,7 @@ EuroSAT has 27,000 labelled images in 10 classes:
     - ```pip install -r requirements.txt```
 6. Run download_data.py
     - ```python download_data.py```
-    - Takes ~10 mins to install data
+    - Takes ~10 mins to download data
 7. Run explore_data.py
     - ```python explore_data.py```
     - Opens a window that needs to be closed to finish the script
