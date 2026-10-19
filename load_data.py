@@ -8,12 +8,13 @@ def get_class_names(data_dir):
             class_names.append(class_folder.name)
     return sorted(class_names)
 
-def load_images(data_dir):
+def load_images(data_dir, show_progress=True):
     images = []
     labels = []
     class_names = get_class_names(data_dir)
     for number, name in enumerate(class_names):
-        print("loading", name)
+        if show_progress:
+            print("loading", name)
         files = sorted((data_dir / name).iterdir())
         for image_path in files:
             images.append(plt.imread(image_path))
