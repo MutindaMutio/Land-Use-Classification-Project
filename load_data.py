@@ -18,11 +18,11 @@ def load_images(data_dir):
         for image_path in files:
             images.append(plt.imread(image_path))
             labels.append(number)
-    print(len(images), len(labels))
+    return images, labels
 
 if __name__ == "__main__":
     data_dir = Path("data/EuroSAT_RGB")
     names = get_class_names(data_dir)
     print (names)
-    load_images(data_dir)
-  
+    images, labels = load_images(data_dir)
+    print(len(labels), len(images))
