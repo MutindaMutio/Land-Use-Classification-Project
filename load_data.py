@@ -1,5 +1,6 @@
 from pathlib import Path
 import matplotlib.pyplot as plt
+import numpy as np
 
 def get_class_names(data_dir):
     class_names = []
@@ -19,11 +20,15 @@ def load_images(data_dir, show_progress=True):
         for image_path in files:
             images.append(plt.imread(image_path))
             labels.append(number)
+    labels = np.array(labels)
+    images = np.array(images)
     return images, labels
 
 if __name__ == "__main__":
     data_dir = Path("data/EuroSAT_RGB")
     names = get_class_names(data_dir)
-    print (names)
+    print(names)
     images, labels = load_images(data_dir)
-    print(len(labels), len(images))
+    print(labels.shape)
+    print(images.shape)
+    print(np.bincount(labels))
