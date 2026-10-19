@@ -25,7 +25,7 @@ def load_images(data_dir, show_progress=True):
     return images, labels
 
 def flatten_images(images):
-    return images.reshape(len(images), 12288)
+    return images.reshape(len(images), -1)
 
 if __name__ == "__main__":
     data_dir = Path("data/EuroSAT_RGB")
