@@ -27,11 +27,18 @@ def load_images(data_dir, show_progress=True):
 def flatten_images(images):
     return images.reshape(len(images), -1)
 
+def scale_images(images):
+    return images / 255
+
 if __name__ == "__main__":
     data_dir = Path("data/EuroSAT_RGB")
     names = get_class_names(data_dir)
     print(names)
     images, labels = load_images(data_dir)
     images = flatten_images(images)
+    images = scale_images(images)
+    print(images.min())
+    print(images.max())
+    print(images.dtype)
     print(images.shape)
     print(np.bincount(labels))
