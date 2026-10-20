@@ -1,6 +1,7 @@
 from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 def get_class_names(data_dir):
     class_names = []
@@ -37,8 +38,12 @@ if __name__ == "__main__":
     images, labels = load_images(data_dir)
     images = flatten_images(images)
     images = scale_images(images)
-    print(images.min())
-    print(images.max())
-    print(images.dtype)
     print(images.shape)
     print(np.bincount(labels))
+    X_train, X_test, y_train, y_test = train_test_split(
+        images, labels, test_size=0.2, stratify=labels, random_state=42)
+    print(X_train.shape)
+    print(X_test.shape)
+    print(y_train.shape)
+    print(y_test.shape)
+    print(np.bincount(y_test))
