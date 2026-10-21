@@ -31,6 +31,9 @@ def flatten_images(images):
 def scale_images(images):
     return images / 255
 
+def split_data(images, labels):
+    return train_test_split(images, labels, test_size=0.2, stratify=labels, random_state=42)
+
 if __name__ == "__main__":
     data_dir = Path("data/EuroSAT_RGB")
     names = get_class_names(data_dir)
@@ -40,8 +43,7 @@ if __name__ == "__main__":
     images = scale_images(images)
     print(images.shape)
     print(np.bincount(labels))
-    X_train, X_test, y_train, y_test = train_test_split(
-        images, labels, test_size=0.2, stratify=labels, random_state=42)
+    X_train, X_test, y_train, y_test = split_data(images, labels)
     print(X_train.shape)
     print(X_test.shape)
     print(y_train.shape)
