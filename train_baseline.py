@@ -8,10 +8,12 @@ images_path = Path("data/images.npy")
 labels_path = Path("data/labels.npy")
 data_dir = Path("data/EuroSAT_RGB")
 
+# If both cache files exist, load them (seconds) instead of re-reading all 27,000 image files (minutes)
 if images_path.exists() and labels_path.exists():
     images = np.load(images_path)
     labels = np.load(labels_path)
 else:
+    # No cache yet: load the images the slow way and save them so the next run is faster
     images, labels = load_images(data_dir)
     np.save(images_path, images)
     np.save(labels_path, labels)
