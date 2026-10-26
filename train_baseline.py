@@ -1,7 +1,7 @@
 from load_data import load_images, flatten_images, scale_images, split_data
 from pathlib import Path
 import numpy as np
-from sklearn.svm import LinearSVC
+from sklearn.linear_model import SGDClassifier
 import time
 
 images_path = Path("data/images.npy")
@@ -24,9 +24,10 @@ X_train, X_test, y_train, y_test = split_data(images, labels)
 print("Train:", X_train.shape)
 print("Test:", X_test.shape)
 
-model = LinearSVC()
+model = SGDClassifier(random_state=42)
 start = time.time()
-model.fit(X_train[:1000], y_train[:1000])
+model.fit(X_train, y_train)
 end = time.time()
 print("Training took", round(end - start, 1), "seconds")
-print("Accuracy:", model.score(X_test, y_test))
+print("Train accuracy:", model.score(X_train, y_train))
+print("Test accuracy:", model.score(X_test, y_test))
