@@ -1,4 +1,4 @@
-from load_data import load_images, flatten_images, scale_images, split_data
+from load_data import load_images, flatten_images, scale_images, split_data, get_class_names
 from pathlib import Path
 import numpy as np
 from sklearn.linear_model import SGDClassifier
@@ -7,6 +7,7 @@ import time
 images_path = Path("data/images.npy")
 labels_path = Path("data/labels.npy")
 data_dir = Path("data/EuroSAT_RGB")
+class_names = get_class_names(data_dir)
 
 # If both cache files exist, load them (seconds) instead of re-reading all 27,000 image files (minutes)
 if images_path.exists() and labels_path.exists():
@@ -31,3 +32,10 @@ end = time.time()
 print("Training took", round(end - start, 1), "seconds")
 print("Train accuracy:", model.score(X_train, y_train))
 print("Test accuracy:", model.score(X_test, y_test))
+y_pred = model.predict(X_test)
+print("Predictions:", y_pred.shape)
+
+for number, name in enumerate(class_names):
+    mask = y_test == number
+    correct = y_pred[mask] == y_test[mask]
+    print(name, round(correct.mean(), 3))
