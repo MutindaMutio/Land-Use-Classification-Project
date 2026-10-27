@@ -2,9 +2,9 @@
 
 This project takes a 64x64 satellite image and predicts its land-use category, such as forest, river, or residential. It uses the [EuroSAT dataset](https://zenodo.org/records/7711810).
 
-**Status:** In progress. The data has been downloaded and explored; no models have been trained yet.
+**Status:** In progress. scikit-learn baseline model trained (35.7% test accuracy).
 
-**Planned:** A simple scikit-learn baseline and a PyTorch CNN, then comparing the two. 
+**Planned:** A PyTorch CNN, then comparing the two.
 
 ## Dataset
 
