@@ -43,5 +43,20 @@ EuroSAT has 27,000 labelled images in 10 classes:
 
 The baseline is a linear classifier (SGDClassifier on default settings) trained on raw pixels. It scored 35.7% accuracy on the 5,400 test images, compared with about 10% when randomly guessing.
 
+Per-class accuracy (share of each class's test images predicted correctly):
+
+| Class | Test images | Accuracy |
+|---|---|---|
+| AnnualCrop | 600 | 0.638 |
+| Forest | 600 | 0.542 |
+| HerbaceousVegetation | 600 | 0.007 |
+| Highway | 500 | 0.156 |
+| Industrial | 500 | 0.614 |
+| Pasture | 400 | 0.132 |
+| PermanentCrop | 500 | 0.000 |
+| Residential | 600 | 0.603 |
+| River | 500 | 0.124 |
+| SeaLake | 600 | 0.590 |
+
 ## Citation
 Helber, P., Bischke, B., Dengel, A., & Borth, D. (2018). EuroSAT: A Novel Dataset and Deep Learning Benchmark for Land Use and Land Cover Classification. Zenodo. https://doi.org/10.5281/zenodo.7711810
