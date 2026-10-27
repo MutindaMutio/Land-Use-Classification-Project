@@ -58,5 +58,12 @@ Per-class accuracy (share of each class's test images predicted correctly):
 | River | 500 | 0.124 |
 | SeaLake | 600 | 0.590 |
 
+### Caveats:
+
+- This is a single run (`random_state=42`), with no repeats, so small differences between classes may just be noise.
+- Pixels were used unscaled and the classifier has its default settings.
+- Training took about 9 minutes on the CPU.
+- A first attempt with `LinearSVC` on the full training set ran for over an hour without finishing and was stopped, so `SGDClassifier` was used instead.
+
 ## Citation
 Helber, P., Bischke, B., Dengel, A., & Borth, D. (2018). EuroSAT: A Novel Dataset and Deep Learning Benchmark for Land Use and Land Cover Classification. Zenodo. https://doi.org/10.5281/zenodo.7711810
