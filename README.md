@@ -38,6 +38,10 @@ EuroSAT has 27,000 labelled images in 10 classes:
 7. Run explore_data.py
     - ```python explore_data.py```
     - Opens a window that needs to be closed to finish the script
+8. Run train_baseline.py
+    - ```python train_baseline.py```
+    - Prints overall and per-class test accuracy
+    - Takes ~9 mins to train. The first run also decodes the images and caches them in `data/`
 
 ## Results
 
