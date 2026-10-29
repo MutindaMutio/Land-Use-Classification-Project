@@ -34,6 +34,9 @@ def scale_images(images):
 def split_data(images, labels):
     return train_test_split(images, labels, test_size=0.2, stratify=labels, random_state=42)
 
+def split_validation(X_train, y_train):
+    return train_test_split(X_train, y_train, test_size=0.25, stratify=y_train, random_state=42)
+
 if __name__ == "__main__":
     data_dir = Path("data/EuroSAT_RGB")
     names = get_class_names(data_dir)
