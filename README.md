@@ -30,15 +30,19 @@ EuroSAT has 27,000 labelled images in 10 classes:
     - ```python -m venv .venv```
 4. Activate it (Windows)
     - ```.venv\Scripts\activate```
-5. Install packages in requirements.txt
+5. Install PyTorch first
+    - Go to https://pytorch.org/get-started/locally/ and choose your operating system, Pip, and Compute Platform (a CUDA version, or CPU if you have no NVIDIA GPU), then run the command it shows
+    - For reference, this project was built with: ```pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu132```
+6. Install the other packages in requirements.txt
     - ```pip install -r requirements.txt```
-6. Run download_data.py
+    - requirements.txt was generated with the CUDA 13.2 build of PyTorch, so if you installed a different build in step 5, remove the torch and torchvision lines from it before running this
+7. Run download_data.py
     - ```python download_data.py```
     - Takes ~10 mins to download data
-7. Run explore_data.py
+8. Run explore_data.py
     - ```python explore_data.py```
     - Opens a window that needs to be closed to finish the script
-8. Run train_baseline.py
+9. Run train_baseline.py
     - ```python train_baseline.py```
     - Prints overall and per-class test accuracy
     - Takes ~9 mins to train. The first run also decodes the images and caches them in `data/`
