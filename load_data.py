@@ -2,6 +2,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.model_selection import train_test_split
+import torch 
 
 def get_class_names(data_dir):
     class_names = []
@@ -36,6 +37,11 @@ def split_data(images, labels):
 
 def split_validation(X_train, y_train):
     return train_test_split(X_train, y_train, test_size=0.25, stratify=y_train, random_state=42)
+
+def prepare_batch(images):
+    t = torch.from_numpy(images)
+    t = t.permute(0, 3, 1, 2)
+    return t.float() / 255
 
 if __name__ == "__main__":
     data_dir = Path("data/EuroSAT_RGB")
