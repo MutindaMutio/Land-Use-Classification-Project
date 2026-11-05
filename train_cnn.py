@@ -20,4 +20,7 @@ val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model = EuroSATCNN().to(device)
+criterion = torch.nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
 
