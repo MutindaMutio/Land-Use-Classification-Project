@@ -24,7 +24,8 @@ model = EuroSATCNN().to(device)
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
-num_epochs = 5
+best_val_acc = 0
+num_epochs = 20
 for epoch in range(num_epochs):
     start = time.time()
 
@@ -53,5 +54,8 @@ for epoch in range(num_epochs):
             outputs = model(images_batch)
             val_loss += criterion(outputs, labels_batch).item()
             correct += (outputs.argmax(dim=1) == labels_batch).sum().item()
-
+        val_acc = correct / len(val_dataset)
+    if val_acc > best_val_acc:
+        best_val_acc = val_acc
+        torch.save(model.state_dict(), "best_model.pt")
     print(f"Epoch {epoch + 1}: train loss {total_loss / len(train_loader):.3f}, val loss {val_loss / len(val_loader):.3f}, val acc {correct / len(val_dataset):.3f}, {time.time() - start:.0f}s")
