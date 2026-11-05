@@ -2,6 +2,8 @@ import numpy as np
 from load_data import split_data, split_validation
 from torch.utils.data import DataLoader
 from dataset import EuroSATDataset
+import torch
+from model import EuroSATCNN
 
 images = np.load("data/images.npy")
 labels = np.load("data/labels.npy")
@@ -15,3 +17,7 @@ val_dataset = EuroSATDataset(X_val, y_val)
 
 train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model = EuroSATCNN().to(device)
+
