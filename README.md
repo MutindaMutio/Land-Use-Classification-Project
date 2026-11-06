@@ -51,6 +51,14 @@ EuroSAT has 27,000 labelled images in 10 classes:
 
 ## Results
 
+All models were scored on the same 5,400 held-out test images.
+
+| Model | Test accuracy |
+|---|---|
+| Random guessing | about 10% |
+| Linear baseline (SGDClassifier, raw pixels) | 35.7% |
+| CNN (PyTorch, 20 epochs, best epoch by validation) | 81.6% |
+
 The baseline is a linear classifier (SGDClassifier on default settings) trained on raw pixels. It scored 35.7% accuracy on the 5,400 test images, compared with about 10% when randomly guessing.
 
 Per-class accuracy (share of each class's test images predicted correctly):
