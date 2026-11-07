@@ -109,5 +109,19 @@ Per-class accuracy (share of each class's test images predicted correctly):
 - Training took about 9 minutes on the CPU.
 - A first attempt with `LinearSVC` on the full training set ran for over an hour without finishing and was stopped, so `SGDClassifier` was used instead.
 
+### CNN
+
+The CNN scored 81.6% accuracy on the 5,400 test images, against 35.7% for the baseline on the same images. The model was selected on the validation set, where it scored 82.0% (epoch 18 of 20); the test and validation figures are similar, which suggests the epoch choice did not overfit to the validation set. The test set was scored once, after training was finished. Training took about 2 seconds per epoch on the GPU.
+
+In the first training run, validation loss was lowest (0.527) at epoch 15, and training loss reached 0.292 by epoch 20. The gap between training and validation loss widened, an early sign of overfitting.
+
+### CNN caveats
+
+- This is a single training run with no random seed, so every run gives slightly different results.
+- The best epoch was chosen on validation accuracy, which was noisy: it moved between about 0.757 and 0.820 over the last 8 epochs, so the choice of epoch is partly down to chance.
+- The comparison with the baseline is not a controlled test of CNN versus non-CNN. The baseline was a linear model on raw pixels with default settings, so the result shows the CNN beats that simple floor, not that CNNs beat classical methods in general.
+- `best_model.pt` is not in the repository (`*.pt` files are ignored). Running `train_cnn.py` again produces different weights and overwrites the file, so the 81.6% would no longer describe it.
+- Per-class results for the CNN have not been analysed yet.
+
 ## Citation
 Helber, P., Bischke, B., Dengel, A., & Borth, D. (2018). EuroSAT: A Novel Dataset and Deep Learning Benchmark for Land Use and Land Cover Classification. Zenodo. https://doi.org/10.5281/zenodo.7711810
