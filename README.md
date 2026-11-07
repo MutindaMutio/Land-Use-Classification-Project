@@ -72,6 +72,15 @@ Pixel values are divided by 255 so they fall between 0 and 1. The network was tr
     - ```python train_baseline.py```
     - Prints overall and per-class test accuracy
     - Takes ~9 mins to train. The first run also decodes the images and caches them in `data/`
+10. Run train_cnn.py
+    - ```python train_cnn.py```
+    - Trains the CNN for 20 epochs, printing training and validation loss and validation accuracy after each one, and saves the best epoch (by validation accuracy) as `best_model.pt`
+    - Needs the cached arrays `data/images.npy` and `data/labels.npy`, which step 9 creates on its first run
+    - Takes about 2 seconds per epoch on an RTX 3060 GPU. The script uses the GPU if one is available and otherwise the CPU (CPU speed was not tested)
+    - There is no random seed, so each run gives slightly different results and overwrites `best_model.pt`. If you rerun it, the score is likely to be close to, but not exactly, the same as the figure in the Results section below
+11. Run evaluate.py
+    - ```python evaluate.py```
+    - Loads `best_model.pt` and prints accuracy on the 5,400 test images. Run `train_cnn.py` first, because the model file is not in the repository
 
 ## Results
 
