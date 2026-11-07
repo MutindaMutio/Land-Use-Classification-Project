@@ -23,6 +23,30 @@ EuroSAT has 27,000 labelled images in 10 classes:
 - `River`: 2500 images
 - `SeaLake`: 3000 images
 
+## Approach
+
+### Data split
+
+The 27,000 images were split with stratification (`random_state=42`) so every class keeps the same proportions in each part. A random, class-balanced 20% (5,400 images) was set aside as the test set. The remaining 21,600 were split again, with 25% (5,400) used as a validation set and 75% (16,200) for training. That gives 16,200 training, 5,400 validation and 5,400 test images (60/20/20). The validation set is used to choose the best epoch, and the test set is only scored once at the end.
+
+### Baseline
+
+A linear classifier (`SGDClassifier`, default settings) trained on the raw pixels flattened into 12,288 values per image. It was fitted on all 21,600 non-test images, so it saw more training data than the CNN did.
+
+### CNN
+
+A small convolutional network (`model.py`) with two convolution blocks and one linear layer:
+
+| Layer | Output shape |
+|---|---|
+| Input | 3 x 64 x 64 |
+| Conv (3 to 16 channels, 3x3) + ReLU + max pool | 16 x 32 x 32 |
+| Conv (16 to 32 channels, 3x3) + ReLU + max pool | 32 x 16 x 16 |
+| Flatten | 8,192 |
+| Linear | 10 (one score per class) |
+
+Pixel values are divided by 255 so they fall between 0 and 1. The network was trained with cross-entropy loss and the Adam optimizer (learning rate 0.001), in batches of 64 for 20 epochs, on an RTX 3060 GPU. After each epoch it was scored on the validation set, and the weights from the epoch with the highest validation accuracy were saved as `best_model.pt`.
+
 ## How to run
 1. Clone the repo
     - ```git clone "https://github.com/MutindaMutio/Land-Use-Classification-Project.git"```
