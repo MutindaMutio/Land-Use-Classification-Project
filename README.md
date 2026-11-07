@@ -59,6 +59,8 @@ All models were scored on the same 5,400 held-out test images.
 | Linear baseline (SGDClassifier, raw pixels) | 35.7% |
 | CNN (PyTorch, 20 epochs, best epoch by validation) | 81.6% |
 
+### Baseline
+
 The baseline is a linear classifier (SGDClassifier on default settings) trained on raw pixels. It scored 35.7% accuracy on the 5,400 test images, compared with about 10% when randomly guessing.
 
 Per-class accuracy (share of each class's test images predicted correctly):
@@ -76,7 +78,7 @@ Per-class accuracy (share of each class's test images predicted correctly):
 | River | 500 | 0.124 |
 | SeaLake | 600 | 0.590 |
 
-### Caveats:
+### Baseline caveats
 
 - This is a single run (`random_state=42`), with no repeats, so small differences between classes may just be noise.
 - Pixels were used unscaled and the classifier has its default settings.
