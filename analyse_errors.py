@@ -1,9 +1,10 @@
 import numpy as np
 import torch
 from torch.utils.data import DataLoader
-from load_data import split_data
+from load_data import split_data, get_class_names
 from dataset import EuroSATDataset
 from model import EuroSATCNN
+from pathlib import Path
 
 images = np.load("data/images.npy")
 labels = np.load("data/labels.npy")
@@ -30,3 +31,10 @@ y_pred = np.concatenate(all_preds)
 
 print(len(y_pred))
 print((y_pred == y_test).mean())
+
+class_names = get_class_names(Path("data/EuroSAT_RGB"))
+
+for number, name in enumerate(class_names):
+    mask = y_test == number
+    correct = y_pred[mask] == y_test[mask]
+    print(name, round(correct.mean(), 3))
