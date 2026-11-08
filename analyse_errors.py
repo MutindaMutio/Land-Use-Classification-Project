@@ -5,6 +5,7 @@ from load_data import split_data, get_class_names
 from dataset import EuroSATDataset
 from model import EuroSATCNN
 from pathlib import Path
+from sklearn.metrics import confusion_matrix
 
 images = np.load("data/images.npy")
 labels = np.load("data/labels.npy")
@@ -38,3 +39,6 @@ for number, name in enumerate(class_names):
     mask = y_test == number
     correct = y_pred[mask] == y_test[mask]
     print(name, round(correct.mean(), 3))
+
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
