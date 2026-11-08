@@ -6,6 +6,7 @@ from dataset import EuroSATDataset
 from model import EuroSATCNN
 from pathlib import Path
 from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
 
 images = np.load("data/images.npy")
 labels = np.load("data/labels.npy")
@@ -42,3 +43,27 @@ for number, name in enumerate(class_names):
 
 cm = confusion_matrix(y_test, y_pred)
 print(cm)
+
+wrong = (y_test == 6) & (y_pred == 2)
+indices = np.where(wrong)[0]
+
+def show_images(image_numbers, title):
+    fig, axes = plt.subplots(2, 5)
+    fig.suptitle(title)
+    for ax, number in zip(axes.flatten(), image_numbers[:10]):
+        ax.imshow(X_test[number])
+        ax.axis("off")
+
+
+right = (y_test == 6) & (y_pred == 6)
+right_indices = np.where(right)[0]
+
+show_images(indices, "PermanentCrop called HerbaceousVegetation")
+show_images(right_indices, "PermanentCrop called PermanentCrop (correct)")
+
+herb = y_test == 2
+print("Wrong:", X_test[indices].mean(axis=(0, 1, 2)).round(1))
+print("Correct:", X_test[right_indices].mean(axis=(0, 1, 2)).round(1))
+print("HerbaceousVegetation:", X_test[herb].mean(axis=(0, 1, 2)).round(1))
+
+plt.show()
