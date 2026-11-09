@@ -158,5 +158,13 @@ The confusion matrix shows what the CNN's wrong answers were. These counts come 
 - The most common River error was Highway, with 61 predictions
 - HerbaceousVegetation was predicted 748 times but only 600 test images belong to it, and 479 of those predictions were correct (precision about 0.64, against recall of 0.798)
 
+I also looked at the PermanentCrop images that were predicted as HerbaceousVegetation, since that is the largest confusion. I did not look at any other class pair.
+
+- I viewed the first 10 of these 130 images (by position in the test set, not random) next to the first 10 correctly classified PermanentCrop images. By eye I could not see a clear difference, and visible field boundaries (straight edges between patches of land) appear in both groups.
+- Average colour (red, green, blue, 0 to 255): the 130 wrong images 119.2, 113.8, 114.0; the 296 correct ones 125.6, 118.4, 114.4; all 600 HerbaceousVegetation images 99.2, 99.6, 104.9
+- The wrong images were slightly darker and greyer, and a little closer to the HerbaceousVegetation average, but still about 20 away in red
+
+The colour difference is small. I did not measure how much individual images vary, and I have not tested whether colour explains these errors.
+
 ## Citation
 Helber, P., Bischke, B., Dengel, A., & Borth, D. (2018). EuroSAT: A Novel Dataset and Deep Learning Benchmark for Land Use and Land Cover Classification. Zenodo. https://doi.org/10.5281/zenodo.7711810
