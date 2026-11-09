@@ -149,5 +149,14 @@ Per-class accuracy on the same 5,400 test images, one run each:
 | River | 500 | 0.124 | 0.696 |
 | SeaLake | 600 | 0.590 | 0.952 |
 
+The confusion matrix shows what the CNN's wrong answers were. These counts come from a single run. I have not tested why these mistakes happen yet.
+
+- The largest single confusion is PermanentCrop predicted as HerbaceousVegetation: 130 of the 500 PermanentCrop test images (26%)
+- The confusion wasn't symmetrical though: only 42 of the 600 HerbaceousVegetation images were predicted as PermanentCrop
+- Industrial is often predicted as Residential (50 of 500), while only 4 of 600 Residential images were predicted as Industrial
+- Highway errors are spread across several classes: 45 to HerbaceousVegetation, 45 to River, 42 to PermanentCrop and 35 to Residential
+- The most common River error was Highway, with 61 predictions
+- HerbaceousVegetation was predicted 748 times but only 600 test images belong to it, and 479 of those predictions were correct (precision about 0.64, against recall of 0.798)
+
 ## Citation
 Helber, P., Bischke, B., Dengel, A., & Borth, D. (2018). EuroSAT: A Novel Dataset and Deep Learning Benchmark for Land Use and Land Cover Classification. Zenodo. https://doi.org/10.5281/zenodo.7711810
