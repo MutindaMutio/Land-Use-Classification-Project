@@ -2,11 +2,11 @@
 
 This project takes a 64x64 satellite image and predicts its land-use category, such as forest, river, or residential. It uses the [EuroSAT dataset](https://zenodo.org/records/7711810).
 
-**Status:** Baseline and CNN both trained and evaluated on the same 5,400 unseen test images.
+**Status:** Baseline and CNN both trained and evaluated on the same 5,400 unseen test images. Per-class accuracy, a confusion matrix and a first look at misclassified images are done.
 
 **Results (single run):** scikit-learn linear baseline 35.7% test accuracy; PyTorch CNN 81.6% test accuracy (chance is roughly 10%).
 
-**Planned:** Look more closely at the CNN to understand where it goes wrong, then clean up the project to make it easier for people to use and read
+**Planned:** Add comments to parts of the code, write a small script that classifies a single image, and tidy up the README
 
 ## Dataset
 
