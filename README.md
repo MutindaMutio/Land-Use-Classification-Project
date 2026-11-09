@@ -130,7 +130,7 @@ In the first training run, validation loss was lowest (0.527) at epoch 15, and t
 - The best epoch was chosen on validation accuracy, which was noisy: it moved between about 0.757 and 0.820 over the last 8 epochs, so the choice of epoch is partly down to chance.
 - The comparison with the baseline is not a controlled test of CNN versus non-CNN. The baseline was a linear model on raw pixels with default settings, so the result shows the CNN beats that simple floor, not that CNNs beat classical methods in general.
 - `best_model.pt` is not in the repository (`*.pt` files are ignored). Running `train_cnn.py` again produces different weights and overwrites the file, so the 81.6% would no longer describe it.
-- Per-class results for the CNN have not been analysed yet.
+- Per-class results come from the same single run, and only one class pair (PermanentCrop and HerbaceousVegetation) was examined image by image.
 
 ### Error analysis
 
