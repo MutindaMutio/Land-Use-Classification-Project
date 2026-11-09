@@ -81,7 +81,10 @@ Pixel values are divided by 255 so they fall between 0 and 1. The network was tr
 11. Run evaluate.py
     - ```python evaluate.py```
     - Loads `best_model.pt` and prints accuracy on the 5,400 test images. Run `train_cnn.py` first, because the model file is not in the repository
-
+12. Run analyse_errors.py
+    - ```python analyse_errors.py```
+    - Loads `best_model.pt` and prints per-class accuracy, the confusion matrix and average colours for the PermanentCrop images, then opens two windows of example images
+    
 ## Results
 
 All models were scored on the same 5,400 held-out test images.
