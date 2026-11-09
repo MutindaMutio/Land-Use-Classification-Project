@@ -132,5 +132,22 @@ In the first training run, validation loss was lowest (0.527) at epoch 15, and t
 - `best_model.pt` is not in the repository (`*.pt` files are ignored). Running `train_cnn.py` again produces different weights and overwrites the file, so the 81.6% would no longer describe it.
 - Per-class results for the CNN have not been analysed yet.
 
+### Error analysis
+
+Per-class accuracy on the same 5,400 test images, one run each:
+
+| Class | Test images | Baseline accuracy | CNN accuracy |
+|---|---|---|---|
+| AnnualCrop | 600 | 0.638 | 0.815 |
+| Forest | 600 | 0.542 | 0.962 |
+| HerbaceousVegetation | 600 | 0.007 | 0.798 |
+| Highway | 500 | 0.156 | 0.588 |
+| Industrial | 500 | 0.614 | 0.850 |
+| Pasture | 400 | 0.132 | 0.845 |
+| PermanentCrop | 500 | 0.000 | 0.592 |
+| Residential | 600 | 0.603 | 0.985 |
+| River | 500 | 0.124 | 0.696 |
+| SeaLake | 600 | 0.590 | 0.952 |
+
 ## Citation
 Helber, P., Bischke, B., Dengel, A., & Borth, D. (2018). EuroSAT: A Novel Dataset and Deep Learning Benchmark for Land Use and Land Cover Classification. Zenodo. https://doi.org/10.5281/zenodo.7711810
