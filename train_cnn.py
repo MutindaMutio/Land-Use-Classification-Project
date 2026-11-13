@@ -16,6 +16,7 @@ X_train, X_val, y_train, y_val = split_validation(X_train, y_train)
 train_dataset = EuroSATDataset(X_train, y_train)
 val_dataset = EuroSATDataset(X_val, y_val)
 
+# Shuffle training batches every epoch so the model never sees the same order twice; validation only measures, its order doesn't really matter
 train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
 
@@ -32,9 +33,11 @@ for epoch in range(num_epochs):
     model.train()
     total_loss = 0
     for images_batch, labels_batch in train_loader:
+        # Model and data must be on the same device, so each batch is moved to it
         images_batch = images_batch.to(device)
         labels_batch = labels_batch.to(device)
 
+        # Gradients will add up across batches, so clear them before each backward pass
         optimizer.zero_grad()
         outputs = model(images_batch)
         loss = criterion(outputs, labels_batch)
@@ -43,6 +46,7 @@ for epoch in range(num_epochs):
 
         total_loss += loss.item()
 
+    # eval() switches off training-only behaviour; no_grad() skips gradient tracking, which validation doesn't need
     model.eval()
     val_loss = 0
     correct = 0
@@ -55,6 +59,8 @@ for epoch in range(num_epochs):
             val_loss += criterion(outputs, labels_batch).item()
             correct += (outputs.argmax(dim=1) == labels_batch).sum().item()
         val_acc = correct / len(val_dataset)
+
+    # Keep the weights with the best validation accuracy, not the last epoch; this overwrites best_model.pt on every run and there is no seed
     if val_acc > best_val_acc:
         best_val_acc = val_acc
         torch.save(model.state_dict(), "best_model.pt")
