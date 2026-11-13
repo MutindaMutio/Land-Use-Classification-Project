@@ -58,10 +58,10 @@ for epoch in range(num_epochs):
             outputs = model(images_batch)
             val_loss += criterion(outputs, labels_batch).item()
             correct += (outputs.argmax(dim=1) == labels_batch).sum().item()
-        val_acc = correct / len(val_dataset)
+    val_acc = correct / len(val_dataset)
 
     # Keep the weights with the best validation accuracy, not the last epoch; this overwrites best_model.pt on every run and there is no seed
     if val_acc > best_val_acc:
         best_val_acc = val_acc
         torch.save(model.state_dict(), "best_model.pt")
-    print(f"Epoch {epoch + 1}: train loss {total_loss / len(train_loader):.3f}, val loss {val_loss / len(val_loader):.3f}, val acc {correct / len(val_dataset):.3f}, {time.time() - start:.0f}s")
+    print(f"Epoch {epoch + 1}: train loss {total_loss / len(train_loader):.3f}, val loss {val_loss / len(val_loader):.3f}, val acc {val_acc:.3f}, {time.time() - start:.0f}s")
