@@ -51,6 +51,8 @@ print(cm)
 # 6 is PermanentCrop and 2 is HerbaceousVegetation, the largest single confusion in the matrix
 wrong = (y_test == 6) & (y_pred == 2)
 indices = np.where(wrong)[0]
+right = (y_test == 6) & (y_pred == 6)
+right_indices = np.where(right)[0]
 
 def show_images(image_numbers, title):
     # Only the first 10, in test-set order (not random) so these are not a representative sample
@@ -59,10 +61,6 @@ def show_images(image_numbers, title):
     for ax, number in zip(axes.flatten(), image_numbers[:10]):
         ax.imshow(X_test[number])
         ax.axis("off")
-
-
-right = (y_test == 6) & (y_pred == 6)
-right_indices = np.where(right)[0]
 
 show_images(indices, "PermanentCrop called HerbaceousVegetation")
 show_images(right_indices, "PermanentCrop called PermanentCrop (correct)")
