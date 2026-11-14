@@ -49,43 +49,43 @@ Pixel values are divided by 255 so they fall between 0 and 1. The network was tr
 
 ## How to run
 1. Clone the repo
-    - ```git clone "https://github.com/MutindaMutio/Land-Use-Classification-Project.git"```
+    - `git clone "https://github.com/MutindaMutio/Land-Use-Classification-Project.git"`
 2. Move into the project folder
-    - ```cd Land-Use-Classification-Project```
-3. Create the virtual environment 
-    - ```python -m venv .venv```
+    - `cd Land-Use-Classification-Project`
+3. Create the virtual environment
+    - `python -m venv .venv`
 4. Activate it (Windows)
-    - ```.venv\Scripts\activate```
+    - `.venv\Scripts\activate`
 5. Install PyTorch first
     - Go to https://pytorch.org/get-started/locally/ and choose your operating system, Pip, and Compute Platform (a CUDA version, or CPU if you have no NVIDIA GPU), then run the command it shows
-    - For reference, this project was built with: ```pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu132```
-6. Install the other packages in requirements.txt
-    - ```pip install -r requirements.txt```
-    - requirements.txt was generated with the CUDA 13.2 build of PyTorch, so if you installed a different build in step 5, remove the torch and torchvision lines from it before running this
-7. Run download_data.py
-    - ```python download_data.py```
-    - Takes ~10 mins to download data
-8. Run explore_data.py
-    - ```python explore_data.py```
+    - For reference, this project was built with: `pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu132`
+6. Install the other packages in `requirements.txt`
+    - `pip install -r requirements.txt`
+    - `requirements.txt` was generated with the CUDA 13.2 build of PyTorch, so if you installed a different build in step 5, remove the `torch` and `torchvision` lines from it before running this
+7. Run `download_data.py`
+    - `python download_data.py`
+    - Takes about 10 minutes to download the data
+8. Run `explore_data.py`
+    - `python explore_data.py`
     - Opens a window that needs to be closed to finish the script
-9. Run train_baseline.py
-    - ```python train_baseline.py```
+9. Run `train_baseline.py`
+    - `python train_baseline.py`
     - Prints overall and per-class test accuracy
-    - Takes ~9 mins to train. The first run also decodes the images and caches them in `data/`
-10. Run train_cnn.py
-    - ```python train_cnn.py```
+    - Takes about 9 minutes to train. The first run also decodes the images and caches them in `data/`
+10. Run `train_cnn.py`
+    - `python train_cnn.py`
     - Trains the CNN for 20 epochs, printing training and validation loss and validation accuracy after each one, and saves the best epoch (by validation accuracy) as `best_model.pt`
     - Needs the cached arrays `data/images.npy` and `data/labels.npy`, which step 9 creates on its first run
     - Takes about 2 seconds per epoch on an RTX 3060 GPU. The script uses the GPU if one is available and otherwise the CPU (CPU speed was not tested)
     - There is no random seed, so each run gives slightly different results and overwrites `best_model.pt`. If you rerun it, the score is likely to be close to, but not exactly, the same as the figure in the Results section below
-11. Run evaluate.py
-    - ```python evaluate.py```
+11. Run `evaluate.py`
+    - `python evaluate.py`
     - Loads `best_model.pt` and prints accuracy on the 5,400 test images. Run `train_cnn.py` first, because the model file is not in the repository
-12. Run analyse_errors.py
-    - ```python analyse_errors.py```
+12. Run `analyse_errors.py`
+    - `python analyse_errors.py`
     - Loads `best_model.pt` and prints per-class accuracy, the confusion matrix and average colours for the PermanentCrop images, then opens two windows of example images
-13. Run predict.py
-    - ```python predict.py path/to/image```
+13. Run `predict.py`
+    - `python predict.py path/to/image`
     - Prints the predicted class name for one 64x64 image, for example one from `data/EuroSAT_RGB/Forest/`
     - Needs `best_model.pt`, which is not in the repository, so run `train_cnn.py` first
     - Reads the class names from `data/EuroSAT_RGB`, so the dataset from step 7 must be downloaded
