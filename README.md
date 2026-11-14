@@ -84,7 +84,13 @@ Pixel values are divided by 255 so they fall between 0 and 1. The network was tr
 12. Run analyse_errors.py
     - ```python analyse_errors.py```
     - Loads `best_model.pt` and prints per-class accuracy, the confusion matrix and average colours for the PermanentCrop images, then opens two windows of example images
-    
+13. Run predict.py
+    - ```python predict.py path/to/image```
+    - Prints the predicted class name for one 64x64 image, for example one from `data/EuroSAT_RGB/Forest/`
+    - Needs `best_model.pt`, which is not in the repository, so run `train_cnn.py` first
+    - Reads the class names from `data/EuroSAT_RGB`, so the dataset from step 7 must be downloaded
+    - Stops with a message if the image is not 64x64, because the model only fits that size
+
 ## Results
 
 All models were scored on the same 5,400 held-out test images.
