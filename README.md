@@ -6,8 +6,6 @@ This project takes a 64x64 satellite image and predicts its land-use category, s
 
 **Results (single run):** scikit-learn linear baseline 35.7% test accuracy; PyTorch CNN 81.6% test accuracy (chance is roughly 10%).
 
-**Planned:** Tidy up the README
-
 ## Dataset
 
 EuroSAT has 27,000 labelled images in 10 classes:
